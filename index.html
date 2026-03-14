@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday ❤️</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+font-family:Arial;
+background: radial-gradient(circle at bottom,#020111 0%,#000000 100%);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+.floating-photo{
+position:absolute;
+bottom:-100px;
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+box-shadow:0 0 15px pink;
+animation: floatPhoto 10s linear infinite;
+}
+
+@keyframes floatPhoto{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+.balloon{
+position:absolute;
+bottom:-50px;
+font-size:30px;
+animation: floatBalloon 8s linear infinite;
+}
+
+
+
+@keyframes floatBalloon{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* moon */
+
+.moon{
+position:absolute;
+top:60px;
+right:100px;
+width:80px;
+height:80px;
+background:#f5f3ce;
+border-radius:50%;
+box-shadow:0 0 40px white;
+}
+
+/* stars */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* shooting star */
+
+.shooting-star{
+position:absolute;
+width:2px;
+height:80px;
+background:linear-gradient(white,transparent);
+transform:rotate(45deg);
+animation:shoot 2s linear;
+}
+
+@keyframes shoot{
+0%{top:-100px;left:0;opacity:1;}
+100%{top:600px;left:1000px;opacity:0;}
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+bottom:-20px;
+font-size:20px;
+animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* envelope */
+
+.envelope{
+width:220px;
+height:150px;
+background:#ff4d6d;
+position:relative;
+cursor:pointer;
+border-radius:6px;
+}
+
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-top:80px solid #ff1e4d;
+transform-origin:top;
+transition:0.5s;
+}
+
+.envelope.open:before{
+transform:rotateX(180deg);
+}
+
+/* message */
+
+.message{
+position:absolute;
+top:180px;
+width:400px;
+text-align:center;
+background:rgba(0,0,0,0.6);
+padding:25px;
+border-radius:15px;
+display:none;
+}
+
+/* glowing text */
+
+.love{
+font-size:28px;
+animation: glow 1s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px white;}
+to{text-shadow:0 0 25px pink;}
+}
+
+/* heart explosion */
+
+.explosion-heart{
+position:absolute;
+font-size:20px;
+animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode{
+0%{transform:translate(0,0);opacity:1;}
+100%{transform:translate(var(--x),var(--y));opacity:0;}
+}
+
+/* fireworks */
+
+.firework{
+position:absolute;
+width:5px;
+height:5px;
+border-radius:50%;
+background:white;
+animation: fire 1s ease-out forwards;
+}
+
+@keyframes fire{
+0%{transform:scale(1);opacity:1;}
+100%{transform:translate(var(--x),var(--y)) scale(2);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+    
+<div class="moon"></div>
+
+<audio id="bgm" loop>
+<source src="nastelbom-happy-birthday-471481 (1).mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope" onclick="openEnvelope()"></div>
+
+<div class="message" id="msgBox">
+<p id="typing"></p>
+<h2 class="love">I Love You Riya ❤️</h2>
+</div>
+
+<script>
+    function createPhoto(){
+
+const photos=["photo1.jpeg","photo2.jpeg","photo3.png","photo4.jpeg","photo5.jpeg","photo6.png","photo7.jpeg","photo8.jpeg","photo9.jpeg","photo10.jpeg","photo11.jpeg","photo12.jpeg","photo13.jpeg","photo14.jpeg"];
+
+const photo=document.createElement("img");
+
+photo.src=photos[Math.floor(Math.random()*photos.length)];
+
+photo.classList.add("floating-photo");
+
+photo.style.left=Math.random()*100+"vw";
+photo.style.animationDuration=(Math.random()*5+8)+"s";
+
+document.body.appendChild(photo);
+
+setTimeout(()=>{
+photo.remove();
+},10000);
+
+}
+
+setInterval(createPhoto,2000);
+    function createBalloon(){
+
+const balloon=document.createElement("div");
+balloon.classList.add("balloon");
+
+balloon.innerHTML="🎈";
+
+balloon.style.left=Math.random()*100+"vw";
+balloon.style.fontSize=(Math.random()*20+25)+"px";
+balloon.style.animationDuration=(Math.random()*4+6)+"s";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.remove();
+},8000);
+
+}
+
+setInterval(createBalloon,900);
+
+/* create stars */
+
+function createStar(){
+const star=document.createElement("div");
+star.classList.add("star");
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
+}
+
+for(let i=0;i<120;i++){
+createStar();
+}
+
+/* shooting stars */
+
+function shootingStar(){
+const star=document.createElement("div");
+star.classList.add("shooting-star");
+document.body.appendChild(star);
+
+setTimeout(()=>{
+star.remove();
+},2000);
+}
+
+setInterval(shootingStar,7000);
+
+/* floating hearts */
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+setInterval(createHeart,400);
+
+/* envelope click */
+
+function openEnvelope(){
+
+document.querySelector(".envelope").classList.add("open");
+
+document.getElementById("msgBox").style.display="block";
+
+document.getElementById("bgm").play();
+
+heartExplosion();
+fireworks();
+typeText();
+
+}
+
+/* typing message */
+
+const text="Happy birthday Jaanu thanku meri zindgi me aane k liye aaj hi k din tum mere liye is duniya me aai Happy Birthday my Girl,MY Love,My Everything. ";
+let i=0;
+
+function typeText(){
+
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(typeText,50);
+}
+
+}
+
+/* heart explosion */
+
+function heartExplosion(){
+
+for(let i=0;i<40;i++){
+
+const heart=document.createElement("div");
+heart.classList.add("explosion-heart");
+heart.innerHTML="💖";
+
+heart.style.left="50%";
+heart.style.top="50%";
+
+const x=(Math.random()*400-200)+"px";
+const y=(Math.random()*400-200)+"px";
+
+heart.style.setProperty("--x",x);
+heart.style.setProperty("--y",y);
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},1000);
+
+}
+
+}
+
+/* fireworks */
+
+function fireworks(){
+
+for(let i=0;i<80;i++){
+
+const fire=document.createElement("div");
+fire.classList.add("firework");
+
+fire.style.left="50%";
+fire.style.top="50%";
+
+const x=(Math.random()*600-300)+"px";
+const y=(Math.random()*600-300)+"px";
+
+fire.style.setProperty("--x",x);
+fire.style.setProperty("--y",y);
+
+document.body.appendChild(fire);
+
+setTimeout(()=>{fire.remove();},1000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
